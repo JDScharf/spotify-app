@@ -12,7 +12,7 @@
 
       <v-col>
         <h1 class="display-2 font-weight-bold mb-6">
-          Spotify Music Explorer
+          Spotify Music Explorer Yo
         </h1>
 
         <!-- class="display-2 font-weight-bold mb-6" -->
