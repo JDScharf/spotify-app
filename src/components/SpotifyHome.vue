@@ -29,25 +29,18 @@
     <v-row class="text-center">
       <v-col class="justify-center">
 
-      <v-list>
         <p> The genres are: </p>
+      <v-list>
         <v-list-item-group v-model="selectedGenre">    
-                   <!-- v-for="item in items.genres"
-          :key="item.genres"
-          >-->
-                  <!-- :value="items.genres" --> 
           <v-list-item
             v-for="(items, i) in items.genres"
             :key="i"
+            :value="items"
             >
-          <!-- <v-list-item
-            v-for="item in items"
-            :key="item"
-            > -->
           <v-list-item-content>
             <v-list-item-title v-text="items"
-              :value="items.genres"
-              @click="getRecommendations(items.genres)"
+              :value="items"
+              @click="getRecommendations"
               ></v-list-item-title>
           </v-list-item-content>
           </v-list-item>
@@ -65,11 +58,9 @@
     name: 'SpotifyHome',
 
     data: () => ({
-      items: {
-      },
-       selectedGenre: 'acoustic',
-
-      // model: 'acoustic',
+      items: "",
+      // genres: [],
+      selectedGenre: "",
       token: localStorage.getItem('token')
     }), 
       methods: {
@@ -79,7 +70,7 @@
             Bearer: token, 
             };
       
-      var genreJSON = [];
+      // var genreJSON = [];
       var token = this.token;
     
     var getGenres = {
@@ -96,9 +87,9 @@
         else return Promise.reject(response);
         })
         .then(function(res) {
-          genreJSON = JSON.parse(JSON.stringify(res));
-          console.log(genreJSON);
-          return genreJSON;
+          // genreJSON = JSON.parse(JSON.stringify(res));
+          // console.log(genreJSON);
+          return res;
         })
         .then(items => {
             this.items = items;
@@ -109,7 +100,7 @@
           console.log(bearerToken);
         });
   },
-        getRecommendations(genres)
+        getRecommendations(selectedGenre)
        {
             var bearerToken = {
             Bearer: token, 
@@ -132,7 +123,7 @@
           // redirect: 'follow'
         };
         // fetch("https://api.spotify.com/v1/recommendations?seed_genres="(this.item), requestOptions)
-        fetch("https://api.spotify.com/v1/recommendations?" + { seed_genres:genres }, requestOptions)
+        fetch("https://api.spotify.com/v1/recommendations" + selectedGenre, requestOptions)
           .then(response => response.text())
           // .then(result => console.log(result))
           .catch(error => console.log('error', error));
