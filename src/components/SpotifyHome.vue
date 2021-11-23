@@ -26,10 +26,13 @@
       </v-col>
     </v-row>
 
-    <v-row class="text-center">
-      <v-col class="justify-center">
-
-        <p> The genres are: </p>
+    <v-row class="allign-top">
+          <!-- <v-row class="text-center"> -->
+      <v-col class="d-flex justify-start"
+              cols="12"
+              sm="4">
+        <v-card>
+        <h3> The genres are: </h3>
       <v-list>
         <v-list-item-group v-model="selectedGenre">    
           <v-list-item
@@ -46,7 +49,38 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
+        </v-card>
+      </v-col>
 
+      <v-spacer>
+      </v-spacer>
+
+      <v-col class="d-flex justify-end"
+              cols="12"
+              sm="4">
+        <v-card>
+          <h3> Top artists for {{ selectedGenre }} are: </h3>
+          <tr>{{ topTenRecs.tracks[0].artists[0].name }}</tr>
+          <!-- <tr>{{ topTenRecs.tracks[1].artists[0].name }}</tr> -->
+      <!-- <v-list class="d-flex justify-end">
+        <v-list-item-group v-model="selectedRecommendation">    
+          <v-list-item
+            v-for="(topTenRecs, i) in topTenRecs.tracks"
+            :key="i"
+            :value="topTenRecs"
+            >
+            sample.tracks[0].album.artists[0].name
+          <v-list-item-content>
+            <v-list-item-title v-text="topTenRecs"
+              :value="topTenRecs"
+              >
+               @click="getRecommendations"
+              </v-list-item-title>
+          </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list> -->
+        </v-card>
       </v-col>
 
     </v-row>
@@ -61,6 +95,18 @@
       items: "",
       // genres: [],
       selectedGenre: "",
+      topTenRecs: {
+          tracks: [
+            {
+              artists: [
+                {
+                name: "",
+                },
+        
+              ],
+            }
+        ],
+      },
       token: localStorage.getItem('token')
     }), 
       methods: {
@@ -71,7 +117,7 @@
             };
       
       // var genreJSON = [];
-      var token = this.token;
+      const token = this.token;
     
     var getGenres = {
       method: 'GET',
@@ -105,15 +151,9 @@
             var bearerToken = {
             Bearer: token, 
             };
-      
-      // var genreJSON = [];
-      var token = this.token;
-      // var genres = this.genres;
-      // this.selectedGenre = {
-      //   name: this.genres,
-      // };
-      // var selectedGenre = this.items;
-        // var raw = "";
+      console.log("Selected Genre is a: " + typeof(selectedGenre) + this.selectedGenre);
+      const token = this.token;
+
         var requestOptions = {
           method: 'GET',
            headers: { 
@@ -123,11 +163,25 @@
           // redirect: 'follow'
         };
         // fetch("https://api.spotify.com/v1/recommendations?seed_genres="(this.item), requestOptions)
-        fetch("https://api.spotify.com/v1/recommendations" + selectedGenre, requestOptions)
+        fetch("https://api.spotify.com/v1/recommendations?limit=10&seed_genres=" + this.selectedGenre, requestOptions)
           .then(response => response.text())
-          // .then(result => console.log(result))
+          .then(topTenRecs => {
+            this.topTenRecs = JSON.parse(topTenRecs);
+            
+            console.log(typeof(topTenRecs) + topTenRecs)
+          })
+        // .then(items => {
+        //     this.items = items;
+        //     console.log(items);
+        // })
           .catch(error => console.log('error', error));
-          console.log(bearerToken + this.selectedGenre);
+          console.log(bearerToken);
+          console.log(this.thisGenre);
+          console.log(this.response);
+          return this.response;
+          // this.response = this.topTenRecs;
+          // console.log(this.topTenRecs);
+          // return this.topTenRecs;
         }
     }  
   }
