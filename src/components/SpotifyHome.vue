@@ -33,17 +33,18 @@
               sm="4">
         <v-card>
         <h3> The genres are: </h3>
+        <p> Double click to launch recommendations </p>
       <v-list>
         <v-list-item-group v-model="selectedGenre">    
           <v-list-item
             v-for="(items, i) in items.genres"
             :key="i"
             :value="items"
+            @click="updateSelectedGenre(selectedGenre)"
             >
           <v-list-item-content>
             <v-list-item-title v-text="items"
               :value="items"
-              @click="getRecommendations"
               ></v-list-item-title>
           </v-list-item-content>
           </v-list-item>
@@ -59,8 +60,9 @@
               cols="12"
               sm="4">
         <v-card>
-          <h3>Top artists for {{ selectedGenre }} are: </h3>
-          <tr>{{ topTenRecs.tracks[0].artists[0].name }}</tr>
+          <h3>Top 10 artist recommendations: {{ selectedGenre }} </h3>
+          <tr
+          @click="updateSelectedGenre(selectedArtist)">{{ topTenRecs.tracks[0].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[1].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[2].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[3].artists[0].name }}</tr>
@@ -102,9 +104,83 @@
 
     data: () => ({
       items: "",
-      // genres: [],
-      selectedGenre: "",
+      selectedGenre: null,
+      selectedArtist: null,
       topTenRecs: {
+          tracks: [
+            {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+            {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                  {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            }
+        ],
+      },
+        topTenArtistRecs: {
           tracks: [
             {
               artists: [
@@ -181,6 +257,14 @@
       token: localStorage.getItem('token')
     }), 
       methods: {
+        updateSelectedGenre(selectedGenre) {
+            this.selectedGenre = selectedGenre;
+            this.getRecommendations(this.selectedGenre);
+        },
+        updateSelectedArtist(selectedArtist) {
+          this.selectedArtist = selectedArtist;
+          this.getRecommendationsFromArtist(this.selectedArtist);
+        },
         getGenres1() 
         {
             var bearerToken = {
@@ -217,45 +301,63 @@
           console.log(bearerToken);
         });
   },
-        getRecommendations(selectedGenre)
-       {
+      getRecommendations(selectedGenre)
+            {
             var bearerToken = {
             Bearer: token, 
             };
       console.log("Selected Genre is a: " + typeof(selectedGenre) + this.selectedGenre);
       const token = this.token;
+      selectedGenre = "&seed_genres=" + this.selectedGenre;
 
         var requestOptions = {
           method: 'GET',
            headers: { 
           Authorization: 'Bearer '+ token
       },
-          // body: raw,
-          // redirect: 'follow'
         };
-        // fetch("https://api.spotify.com/v1/recommendations?seed_genres="(this.item), requestOptions)
-        fetch("https://api.spotify.com/v1/recommendations?limit=10&seed_genres=" + this.selectedGenre, requestOptions)
+        fetch("https://api.spotify.com/v1/recommendations?limit=10" + selectedGenre, requestOptions)
           .then(response => response.text())
           .then(topTenRecs => {
             this.topTenRecs = JSON.parse(topTenRecs);
-            
             console.log(typeof(topTenRecs) + topTenRecs)
-          })
-        // .then(items => {
-        //     this.items = items;
-        //     console.log(items);
-        // })
+          }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
           console.log(this.thisGenre);
           console.log(this.response);
           return this.response;
-          // this.response = this.topTenRecs;
-          // console.log(this.topTenRecs);
-          // return this.topTenRecs;
+    }  
+  }, 
+      getRecommendationsFromArtist(selectedArtist)
+      {
+            var bearerToken = {
+            Bearer: token, 
+            };
+      console.log("Selected Arist is a: " + typeof(selectedArtist) + this.selectedArtist);
+      const token = this.token;
+      selectedArtist = "&artists=" + this.selectedArtist;
+
+        var requestOptions = {
+          method: 'GET',
+           headers: { 
+          Authorization: 'Bearer '+ token
+      },
+        };
+        fetch("https://api.spotify.com/v1/recommendations?limit=10" + selectedArtist, requestOptions)
+          .then(response => response.text())
+          .then(topTenArtistRecs => {
+            this.topTenArtistRecs = JSON.parse(topTenArtistRecs);
+            console.log(typeof(topTenArtistRecs) + topTenArtistRecs)
+          }) 
+          .catch(error => console.log('error', error));
+          console.log(bearerToken);
+          console.log(this.response);
+          return this.response;
         }
     }  
-  }
+
+
 </script>
 
 <style>
