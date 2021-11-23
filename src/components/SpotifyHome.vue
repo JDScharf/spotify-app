@@ -12,7 +12,7 @@
 
       <v-col>
         <h1 class="display-2 font-weight-bold mb-6">
-          Spotify Music Explorer Yo
+          Spotify Music Explorer
         </h1>
 
         <!-- class="display-2 font-weight-bold mb-6" -->
@@ -30,14 +30,25 @@
       <v-col class="justify-center">
 
       <v-list>
-                <p> The genres are: </p>
-        <v-list-item-group v-model="model">
+        <p> The genres are: </p>
+        <v-list-item-group v-model="selectedGenre">    
+                   <!-- v-for="item in items.genres"
+          :key="item.genres"
+          >-->
+                  <!-- :value="items.genres" --> 
           <v-list-item
-          v-for="(items, i) in items.genres"
-          :key="i"
-          >
+            v-for="(items, i) in items.genres"
+            :key="i"
+            >
+          <!-- <v-list-item
+            v-for="item in items"
+            :key="item"
+            > -->
           <v-list-item-content>
-            <v-list-item-title v-text="items"></v-list-item-title>
+            <v-list-item-title v-text="items"
+              :value="items.genres"
+              @click="getRecommendations(items.genres)"
+              ></v-list-item-title>
           </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -56,13 +67,15 @@
     data: () => ({
       items: {
       },
-      model: 1,
+       selectedGenre: 'acoustic',
+
+      // model: 'acoustic',
       token: localStorage.getItem('token')
     }), 
-       methods: {
+      methods: {
         getGenres1() 
         {
-            const bearerToken = {
+            var bearerToken = {
             Bearer: token, 
             };
       
@@ -72,7 +85,6 @@
     var getGenres = {
       method: 'GET',
       headers: { 
-        //  Accept: 'text/plain',
          Authorization: 'Bearer '+ token
       },
     };
@@ -96,8 +108,37 @@
           console.warn('Something went wrong', error);
           console.log(bearerToken);
         });
-  }
-}
+  },
+        getRecommendations(genres)
+       {
+            var bearerToken = {
+            Bearer: token, 
+            };
+      
+      // var genreJSON = [];
+      var token = this.token;
+      // var genres = this.genres;
+      // this.selectedGenre = {
+      //   name: this.genres,
+      // };
+      // var selectedGenre = this.items;
+        // var raw = "";
+        var requestOptions = {
+          method: 'GET',
+           headers: { 
+          Authorization: 'Bearer '+ token
+      },
+          // body: raw,
+          // redirect: 'follow'
+        };
+        // fetch("https://api.spotify.com/v1/recommendations?seed_genres="(this.item), requestOptions)
+        fetch("https://api.spotify.com/v1/recommendations?" + { seed_genres:genres }, requestOptions)
+          .then(response => response.text())
+          // .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+          console.log(bearerToken + this.selectedGenre);
+        }
+    }  
   }
 </script>
 
