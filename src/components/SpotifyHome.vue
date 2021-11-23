@@ -59,9 +59,18 @@
               cols="12"
               sm="4">
         <v-card>
-          <h3> Top artists for {{ selectedGenre }} are: </h3>
+          <h3>Top artists for {{ selectedGenre }} are: </h3>
           <tr>{{ topTenRecs.tracks[0].artists[0].name }}</tr>
-          <!-- <tr>{{ topTenRecs.tracks[1].artists[0].name }}</tr> -->
+          <tr>{{ topTenRecs.tracks[1].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[2].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[3].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[4].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[5].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[6].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[7].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[8].artists[0].name }}</tr>
+          <tr>{{ topTenRecs.tracks[9].artists[0].name }}</tr>
+
       <!-- <v-list class="d-flex justify-end">
         <v-list-item-group v-model="selectedRecommendation">    
           <v-list-item
@@ -102,7 +111,69 @@
                 {
                 name: "",
                 },
-        
+              ],
+            },
+            {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                  {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
+              ],
+            },
+                    {
+              artists: [
+                {
+                name: "",
+                },
               ],
             }
         ],
