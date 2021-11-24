@@ -15,8 +15,6 @@
           Spotify Music Explorer
         </h1>
 
-        <!-- class="display-2 font-weight-bold mb-6" -->
-
       <v-btn id="home-button"
         class="black--text"
         color="primary"
@@ -52,25 +50,32 @@
         </v-card>
       </v-col>
 
-      <v-spacer>
-      </v-spacer>
-
-      <v-col class="d-flex justify-end"
+      <v-col class="d-flex justify-center"
               cols="12"
               sm="4">
         <v-card>
           <h3>Top 10 artist recommendations: {{ selectedGenre }} </h3>
+          <p>Click the artist to see 10 artists that are similar to them </p>
           <tr
-          @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id)">{{ topTenRecs.tracks[0].artists[0].name }} - {{ topTenRecs.tracks[0].artists[0].id }}</tr>
-          <tr>{{ topTenRecs.tracks[1].artists[0].name }} </tr>
-          <tr>{{ topTenRecs.tracks[2].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[3].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[4].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[5].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[6].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[7].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[8].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[9].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id)">{{ topTenRecs.tracks[0].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id)">{{ topTenRecs.tracks[1].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id)">{{ topTenRecs.tracks[2].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id)">{{ topTenRecs.tracks[3].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id)">{{ topTenRecs.tracks[4].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id)">{{ topTenRecs.tracks[5].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id)">{{ topTenRecs.tracks[6].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id)">{{ topTenRecs.tracks[7].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id)">{{ topTenRecs.tracks[8].artists[0].name }}</tr>
+          <tr
+           @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id)">{{ topTenRecs.tracks[9].artists[0].name }}</tr>
 
         <!-- <v-list-item-group v-model="selectedArtist">   
           <v-list-item 
@@ -98,6 +103,25 @@
           </v-list-item>
         </v-list-item-group>
       </v-list> -->
+        </v-card>
+      </v-col>
+
+      <v-col class="d-flex justify-end"
+              cols="12"
+              sm="4">
+        <v-card>
+          <h3>10 more artist recommendations</h3>
+          <tr>{{ topTenArtistRecs.tracks[0].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[1].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[2].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[3].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[4].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[5].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[6].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[7].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[8].artists[0].name }}</tr>
+          <tr>{{ topTenArtistRecs.tracks[9].artists[0].name }}</tr>
+
         </v-card>
       </v-col>
 
