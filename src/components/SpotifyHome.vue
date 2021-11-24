@@ -27,7 +27,6 @@
     </v-row>
 
     <v-row class="allign-top">
-          <!-- <v-row class="text-center"> -->
       <v-col class="d-flex justify-start"
               cols="12"
               sm="4">
@@ -62,7 +61,7 @@
         <v-card>
           <h3>Top 10 artist recommendations: {{ selectedGenre }} </h3>
           <tr
-          @click="updateSelectedArtist">{{ topTenRecs.tracks[0].artists[0].name }} - {{ topTenRecs.tracks[0].artists[0].id }}</tr>
+          @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id)">{{ topTenRecs.tracks[0].artists[0].name }} - {{ topTenRecs.tracks[0].artists[0].id }}</tr>
           <tr>{{ topTenRecs.tracks[1].artists[0].name }} </tr>
           <tr>{{ topTenRecs.tracks[2].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[3].artists[0].name }}</tr>
@@ -73,20 +72,13 @@
           <tr>{{ topTenRecs.tracks[8].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[9].artists[0].name }}</tr>
 
-        <v-list-item-group v-model="selectedArtist">  
-
-         <!-- <v-list-item
-            v-for="(items, i) in items.genres"
-            :key="i"
-            :value="items"
-            @click="updateSelectedGenre(selectedGenre)"
-            >   -->
-          
+        <!-- <v-list-item-group v-model="selectedArtist">   
           <v-list-item 
-          v-for="(recommendation, i) in topTenRecs.tracks" :key="i">
+          v-for="(recommendation, i) in topTenRecs.tracks" :key="i"
+          :value="recommendation.topTenRecs">
             {{ recommendation.topTenRecs }}
           </v-list-item>
-        </v-list-item-group>
+        </v-list-item-group> -->
 
       <!-- <v-list class="d-flex justify-end">
         <v-list-item-group v-model="selectedRecommendation">    
@@ -120,7 +112,7 @@
     data: () => ({
       items: "",
       selectedGenre: "",
-      selectedArtist: "",
+      selectedArtistID: {},
       topTenRecs: {
           tracks: [
             {
@@ -276,10 +268,9 @@
             this.selectedGenre = selectedGenre;
             this.getRecommendations(this.selectedGenre);
         },
-        updateSelectedArtist(selectedArtist) {
-          this.selectedArtist = selectedArtist;
-          this.selectedArtistID = selectedArtist.topTenRecs.tracks[0].artists[0].id;
-          console.log("This is the artist id: " + this.selectedArtistID);
+        updateSelectedArtist(selectedArtistID) {
+          this.selectedArtistID = selectedArtistID;
+          console.log("This selected artistID is: " + typeof(selectedArtistID) + selectedArtistID);
           this.getRecommendationsFromArtist(this.selectedArtistID);
         },
         getGenres1() 
@@ -344,16 +335,15 @@
           // console.log(this.thisGenre);
           console.log(this.response);
           return this.response;
-    }  
-  }, 
-      getRecommendationsFromArtist(selectedArtist)
+    },
+    getRecommendationsFromArtist(selectedArtistID)
       {
             var bearerToken = {
             Bearer: token, 
             };
-      console.log("Selected Arist is a: " + typeof(selectedArtist) + this.selectedArtist);
+      console.log("Selected Arist ID is: " + typeof(selectedArtistID) + this.selectedArtistID);
       const token = this.token;
-      selectedArtist = "&seed_artists=" + this.selectedArtist;
+      selectedArtistID = "&seed_artists=" + this.selectedArtistID;
 
         var requestOptions = {
           method: 'GET',
@@ -361,7 +351,7 @@
           Authorization: 'Bearer '+ token
       },
         };
-        fetch("https://api.spotify.com/v1/recommendations?limit=10" + selectedArtist, requestOptions)
+        fetch("https://api.spotify.com/v1/recommendations?limit=10" + selectedArtistID, requestOptions)
           .then(response => response.text())
           .then(topTenArtistRecs => {
             this.topTenArtistRecs = JSON.parse(topTenArtistRecs);
@@ -373,8 +363,8 @@
           return this.response2;
         }
     }  
-
-
+  }
+      
 </script>
 
 <style>

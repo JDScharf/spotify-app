@@ -44,7 +44,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
 import SpotifyHome from './components/SpotifyHome';
 
 export default {
