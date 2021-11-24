@@ -19,19 +19,52 @@
         class="black--text"
         color="primary"
         rounded
-      @click="getGenres1">Explore Genres
+      @click="getGenres1">Click to Begin
       </v-btn>
       </v-col>
     </v-row>
 
     <v-row class="allign-top">
-      <v-col class="d-flex justify-start"
+      <v-col 
+              v-if="showGenresCol"
+              class="d-flex justify-start"
               cols="12"
-              sm="4">
-        <v-card>
-        <h3> The genres are: </h3>
-        <p> Double click to launch recommendations </p>
-      <v-list>
+              lg="4"
+              md="4"
+              sm="4" id="genresCol">
+        <v-card
+        padding=50px
+        width="100%">
+        <h3> Search Different Music Genres to find recommendations.</h3>
+        <p></p>
+
+          <!-- <v-autocomplete>  
+            <template>
+        <v-select
+        :items="items.genres"
+        ></v-select>
+
+        </template>
+     </v-autocomplete> -->
+    <v-row>
+      <v-col>
+    <v-autocomplete
+      v-model="selectedGenre"
+      :items="items.genres"
+      clearable
+      ></v-autocomplete>
+      </v-col>
+      <v-col>
+            <v-btn id="home-button"
+        class="black--text"
+        color="primary"
+        rounded
+      @click="updateSelectedGenre(selectedGenre)"><v-icon>  </v-icon> Recommendations
+      </v-btn>
+      </v-col>
+    </v-row>
+
+      <!-- <v-list>
         <v-list-item-group v-model="selectedGenre">    
           <v-list-item
             v-for="(items, i) in items.genres"
@@ -46,71 +79,57 @@
           </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-      </v-list>
+      </v-list> -->
+
         </v-card>
       </v-col>
 
-      <v-col class="d-flex justify-center"
+      <v-col 
+              v-if="showTenRecs"
+              class="d-flex justify-center"
               cols="12"
-              sm="4">
-        <v-card>
+              sm="4"
+              id="firstTenRecsCol">
+        <v-card width="100%"
+            height="500px">
           <h3>Top 10 artist recommendations: {{ this.selectedGenre }} </h3>
           <p>Click the artist to see 10 artists that are similar to them </p>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">{{ topTenRecs.tracks[0].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">{{ topTenRecs.tracks[1].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">{{ topTenRecs.tracks[2].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">{{ topTenRecs.tracks[3].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">{{ topTenRecs.tracks[4].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">{{ topTenRecs.tracks[5].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">{{ topTenRecs.tracks[6].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">{{ topTenRecs.tracks[7].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">{{ topTenRecs.tracks[8].artists[0].name }}</tr>
-          <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">{{ topTenRecs.tracks[9].artists[0].name }}</tr>
+          <v-row>
+            <v-col>
+          <tr>
+          <v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">{{ topTenRecs.tracks[0].artists[0].name }}</v-btn></tr>
+           <tr>
+          <v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">{{ topTenRecs.tracks[1].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">{{ topTenRecs.tracks[2].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">{{ topTenRecs.tracks[3].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">{{ topTenRecs.tracks[4].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">{{ topTenRecs.tracks[5].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">{{ topTenRecs.tracks[6].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">{{ topTenRecs.tracks[7].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">{{ topTenRecs.tracks[8].artists[0].name }}</v-btn></tr>
+          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">{{ topTenRecs.tracks[9].artists[0].name }}</v-btn></tr>
+            </v-col>
+          </v-row>
 
-        <!-- <v-list-item-group v-model="selectedArtist">   
-          <v-list-item 
-          v-for="(recommendation, i) in topTenRecs.tracks" :key="i"
-          :value="recommendation.topTenRecs">
-            {{ recommendation.topTenRecs }}
-          </v-list-item>
-        </v-list-item-group> -->
-
-      <!-- <v-list class="d-flex justify-end">
-        <v-list-item-group v-model="selectedRecommendation">    
-          <v-list-item
-            v-for="(topTenRecs, i) in topTenRecs.tracks"
-            :key="i"
-            :value="topTenRecs"
-            >
-            sample.tracks[0].album.artists[0].name
-          <v-list-item-content>
-            <v-list-item-title v-text="topTenRecs"
-              :value="topTenRecs"
-              >
-               @click="getRecommendations"
-              </v-list-item-title>
-          </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list> -->
         </v-card>
       </v-col>
 
-      <v-col class="d-flex justify-end"
+      <v-col v-if="showTenMore" class="d-flex justify-end"
               cols="12"
               sm="4">
-        <v-card>
+        <v-card width="100%">
           <h3>10 more artist recommendations similar to: {{ selectedArtistName }} </h3>
+          <p></p>
           <tr>{{ topTenArtistRecs.tracks[0].artists[0].name }}</tr>
           <tr>{{ topTenArtistRecs.tracks[1].artists[0].name }}</tr>
           <tr>{{ topTenArtistRecs.tracks[2].artists[0].name }}</tr>
@@ -137,6 +156,10 @@
       items: "",
       selectedGenre: "",
       selectedArtistID: {},
+      selectedArtistName: "",
+      showGenresCol: false,
+      showTenRecs: false,
+      showTenMore: false,
       topTenRecs: {
           tracks: [
             {
@@ -286,7 +309,12 @@
         ],
       },
       token: localStorage.getItem('token')
-    }), 
+    }),
+    // onCreate: {
+    //     if(items = !null) {
+    //       this.getGenres1();
+    //     }
+    // },
       methods: {
         updateSelectedGenre(selectedGenre) {
             this.selectedGenre = selectedGenre;
@@ -328,6 +356,7 @@
         .then(items => {
             this.items = items;
             console.log(items);
+            this.showGenresCol=true;
         })
         .catch(function (error) {
           console.warn('Something went wrong', error);
@@ -353,7 +382,8 @@
           .then(response => response.text())
           .then(topTenRecs => {
             this.topTenRecs = JSON.parse(topTenRecs);
-            console.log(typeof(topTenRecs) + topTenRecs)
+            console.log(typeof(topTenRecs) + topTenRecs);
+            this.showTenRecs=true;
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
@@ -381,6 +411,7 @@
           .then(topTenArtistRecs => {
             this.topTenArtistRecs = JSON.parse(topTenArtistRecs);
             console.log(typeof(topTenArtistRecs) + topTenArtistRecs)
+            this.showTenMore=true;
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
