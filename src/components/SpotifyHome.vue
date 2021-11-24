@@ -62,8 +62,8 @@
         <v-card>
           <h3>Top 10 artist recommendations: {{ selectedGenre }} </h3>
           <tr
-          @click="updateSelectedGenre(selectedArtist)">{{ topTenRecs.tracks[0].artists[0].name }}</tr>
-          <tr>{{ topTenRecs.tracks[1].artists[0].name }}</tr>
+          @click="updateSelectedArtist">{{ topTenRecs.tracks[0].artists[0].name }} - {{ topTenRecs.tracks[0].artists[0].id }}</tr>
+          <tr>{{ topTenRecs.tracks[1].artists[0].name }} </tr>
           <tr>{{ topTenRecs.tracks[2].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[3].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[4].artists[0].name }}</tr>
@@ -72,6 +72,21 @@
           <tr>{{ topTenRecs.tracks[7].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[8].artists[0].name }}</tr>
           <tr>{{ topTenRecs.tracks[9].artists[0].name }}</tr>
+
+        <v-list-item-group v-model="selectedArtist">  
+
+         <!-- <v-list-item
+            v-for="(items, i) in items.genres"
+            :key="i"
+            :value="items"
+            @click="updateSelectedGenre(selectedGenre)"
+            >   -->
+          
+          <v-list-item 
+          v-for="(recommendation, i) in topTenRecs.tracks" :key="i">
+            {{ recommendation.topTenRecs }}
+          </v-list-item>
+        </v-list-item-group>
 
       <!-- <v-list class="d-flex justify-end">
         <v-list-item-group v-model="selectedRecommendation">    
@@ -104,8 +119,8 @@
 
     data: () => ({
       items: "",
-      selectedGenre: null,
-      selectedArtist: null,
+      selectedGenre: "",
+      selectedArtist: "",
       topTenRecs: {
           tracks: [
             {
@@ -263,7 +278,9 @@
         },
         updateSelectedArtist(selectedArtist) {
           this.selectedArtist = selectedArtist;
-          this.getRecommendationsFromArtist(this.selectedArtist);
+          this.selectedArtistID = selectedArtist.topTenRecs.tracks[0].artists[0].id;
+          console.log("This is the artist id: " + this.selectedArtistID);
+          this.getRecommendationsFromArtist(this.selectedArtistID);
         },
         getGenres1() 
         {
@@ -301,7 +318,7 @@
           console.log(bearerToken);
         });
   },
-      getRecommendations(selectedGenre)
+    getRecommendations(selectedGenre)
             {
             var bearerToken = {
             Bearer: token, 
@@ -324,7 +341,7 @@
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
-          console.log(this.thisGenre);
+          // console.log(this.thisGenre);
           console.log(this.response);
           return this.response;
     }  
@@ -336,7 +353,7 @@
             };
       console.log("Selected Arist is a: " + typeof(selectedArtist) + this.selectedArtist);
       const token = this.token;
-      selectedArtist = "&artists=" + this.selectedArtist;
+      selectedArtist = "&seed_artists=" + this.selectedArtist;
 
         var requestOptions = {
           method: 'GET',
@@ -352,8 +369,8 @@
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
-          console.log(this.response);
-          return this.response;
+          console.log(this.response2);
+          return this.response2;
         }
     }  
 
