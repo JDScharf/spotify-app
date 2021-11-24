@@ -20,9 +20,6 @@ export default {
 </script>
 
 <style scoped>
-/* .flex {
-  background: primary;
-} */
 #jasonFooter {
     margin-top: 300px;
 }

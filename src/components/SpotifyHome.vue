@@ -54,28 +54,28 @@
               cols="12"
               sm="4">
         <v-card>
-          <h3>Top 10 artist recommendations: {{ selectedGenre }} </h3>
+          <h3>Top 10 artist recommendations: {{ this.selectedGenre }} </h3>
           <p>Click the artist to see 10 artists that are similar to them </p>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id)">{{ topTenRecs.tracks[0].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">{{ topTenRecs.tracks[0].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id)">{{ topTenRecs.tracks[1].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">{{ topTenRecs.tracks[1].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id)">{{ topTenRecs.tracks[2].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">{{ topTenRecs.tracks[2].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id)">{{ topTenRecs.tracks[3].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">{{ topTenRecs.tracks[3].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id)">{{ topTenRecs.tracks[4].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">{{ topTenRecs.tracks[4].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id)">{{ topTenRecs.tracks[5].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">{{ topTenRecs.tracks[5].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id)">{{ topTenRecs.tracks[6].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">{{ topTenRecs.tracks[6].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id)">{{ topTenRecs.tracks[7].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">{{ topTenRecs.tracks[7].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id)">{{ topTenRecs.tracks[8].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">{{ topTenRecs.tracks[8].artists[0].name }}</tr>
           <tr
-           @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id)">{{ topTenRecs.tracks[9].artists[0].name }}</tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">{{ topTenRecs.tracks[9].artists[0].name }}</tr>
 
         <!-- <v-list-item-group v-model="selectedArtist">   
           <v-list-item 
@@ -110,7 +110,7 @@
               cols="12"
               sm="4">
         <v-card>
-          <h3>10 more artist recommendations</h3>
+          <h3>10 more artist recommendations similar to: {{ selectedArtistName }} </h3>
           <tr>{{ topTenArtistRecs.tracks[0].artists[0].name }}</tr>
           <tr>{{ topTenArtistRecs.tracks[1].artists[0].name }}</tr>
           <tr>{{ topTenArtistRecs.tracks[2].artists[0].name }}</tr>
@@ -292,8 +292,9 @@
             this.selectedGenre = selectedGenre;
             this.getRecommendations(this.selectedGenre);
         },
-        updateSelectedArtist(selectedArtistID) {
+        updateSelectedArtist(selectedArtistID, selectedArtistName) {
           this.selectedArtistID = selectedArtistID;
+          this.selectedArtistName = selectedArtistName;
           console.log("This selected artistID is: " + typeof(selectedArtistID) + selectedArtistID);
           this.getRecommendationsFromArtist(this.selectedArtistID);
         },
