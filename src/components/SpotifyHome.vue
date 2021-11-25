@@ -90,36 +90,39 @@
               cols="12"
               sm="4"
               id="firstTenRecsCol">
-        <v-card width="100%"
-            height="500px">
+        <v-card width="100%">
           <h3>Top 10 artist recommendations: {{ this.selectedGenre }} </h3>
           <p>Click the artist to see 10 artists that are similar to them </p>
-          <v-row>
-            <v-col>
-          <tr>
+
+          <img :src= "(topTenRecs.tracks[0].album.images[1].url)">
           <v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">{{ topTenRecs.tracks[0].artists[0].name }}</v-btn></tr>
-           <tr>
+           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">{{ topTenRecs.tracks[0].artists[0].name }}</v-btn>
+          <img :src= "(topTenRecs.tracks[1].album.images[1].url)">
           <v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">{{ topTenRecs.tracks[1].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">{{ topTenRecs.tracks[1].artists[0].name }}</v-btn>
+           <tr> <img :src= "(topTenRecs.tracks[2].album.images[1].url)">
+            <v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">{{ topTenRecs.tracks[2].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+          <tr><img :src= "(topTenRecs.tracks[3].album.images[1].url)">
+          <v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">{{ topTenRecs.tracks[3].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+          <tr><img :src= "(topTenRecs.tracks[4].album.images[1].url)">
+          <v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">{{ topTenRecs.tracks[4].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+          <tr><img :src= "(topTenRecs.tracks[5].album.images[1].url)">
+          <v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">{{ topTenRecs.tracks[5].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+          <tr><img :src= "(topTenRecs.tracks[6].album.images[1].url)">
+          <v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">{{ topTenRecs.tracks[6].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+          <tr>
+            <img :src= "(topTenRecs.tracks[7].album.images[1].url)"><v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">{{ topTenRecs.tracks[7].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+          <tr><img :src= "(topTenRecs.tracks[8].album.images[1].url)"><v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">{{ topTenRecs.tracks[8].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
+          <tr><img :src= "(topTenRecs.tracks[9].album.images[1].url)">
+          <v-btn
            @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">{{ topTenRecs.tracks[9].artists[0].name }}</v-btn></tr>
-            </v-col>
-          </v-row>
 
         </v-card>
       </v-col>
@@ -130,16 +133,17 @@
         <v-card width="100%">
           <h3>10 more artist recommendations similar to: {{ selectedArtistName }} </h3>
           <p></p>
-          <tr>{{ topTenArtistRecs.tracks[0].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[1].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[2].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[3].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[4].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[5].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[6].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[7].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[8].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[9].artists[0].name }}</tr>
+
+          <tr><img :src= "(topTenArtistRecs.tracks[0].album.images[1].url)">{{ topTenArtistRecs.tracks[0].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[1].album.images[1].url)">{{ topTenArtistRecs.tracks[1].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[2].album.images[1].url)">{{ topTenArtistRecs.tracks[2].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[3].album.images[1].url)">{{ topTenArtistRecs.tracks[3].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[4].album.images[1].url)">{{ topTenArtistRecs.tracks[4].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[5].album.images[1].url)">{{ topTenArtistRecs.tracks[5].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[6].album.images[1].url)">{{ topTenArtistRecs.tracks[6].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[7].album.images[1].url)">{{ topTenArtistRecs.tracks[7].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[8].album.images[1].url)">{{ topTenArtistRecs.tracks[8].artists[0].name }}</tr>
+          <tr><img :src= "(topTenArtistRecs.tracks[9].album.images[1].url)">{{ topTenArtistRecs.tracks[9].artists[0].name }}</tr>
 
         </v-card>
       </v-col>
@@ -163,149 +167,29 @@
       topTenRecs: {
           tracks: [
             {
+              album: {
+                images: [],
+              },
               artists: [
                 {
                 name: "",
                 },
               ],
             },
-            {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                  {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            }
         ],
       },
         topTenArtistRecs: {
           tracks: [
             {
+              album: {
+                images: [],
+              },
               artists: [
                 {
                 name: "",
                 },
               ],
             },
-            {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                  {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            }
         ],
       },
       token: localStorage.getItem('token')
