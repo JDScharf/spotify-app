@@ -22,6 +22,13 @@
         rounded
       @click="getGenres1">Click to Begin
       </v-btn>
+      <v-btn id="home-button"
+        v-if="isScreenDirty"
+        class="black--text"
+        color="secondary"
+        rounded
+      @click="resetFields">Reset Searches
+      </v-btn>
       </v-col>
     </v-row>
 
@@ -34,12 +41,11 @@
               md="4"
               sm="4" id="genresCol">
         <v-card
-        padding=50px
-        width>
+        padding=50px>
         <v-card-title> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
           <v-row>
-
+            <v-col>
           <v-autocomplete
             filled
             solo
@@ -47,16 +53,19 @@
             clearable
             v-model="selectedGenre"
             :items="items.genres"
+            :menu-props="{ top: true, offsetY: true }"
             ></v-autocomplete>
-
-
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
                   <v-btn id="home-button"
               class="black--text"
               color="primary"
               rounded
             @click="updateSelectedGenre(selectedGenre)"><v-icon>  </v-icon> Get Recommendations
             </v-btn>
-
+            </v-col>
           </v-row>
         </v-card>
       </v-col>
@@ -248,6 +257,7 @@
       selectedArtistID: {},
       selectedArtistName: "",
       isNewScreen: true,
+      isScreenDirty: false,
       showGenresCol: false,
       showTenRecs: false,
       showTenMore: false,
@@ -291,6 +301,11 @@
           this.selectedArtistName = selectedArtistName;
           console.log("This selected artistID is: " + typeof(selectedArtistID) + selectedArtistID);
           this.getRecommendationsFromArtist(this.selectedArtistID);
+        },
+        resetFields() {
+            this.showTenRecs= false;
+            this.showTenMore= false;
+            this.selectedGenre = null;
         },
         getGenres1() 
         {
@@ -349,6 +364,7 @@
             this.topTenRecs = JSON.parse(topTenRecs);
             console.log(typeof(topTenRecs) + topTenRecs);
             this.showTenRecs=true;
+            this.isScreenDirty= true;
             this.showTenMore=false;
           }) 
           .catch(error => console.log('error', error));
