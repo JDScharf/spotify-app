@@ -1,6 +1,6 @@
 <template>
-  <v-footer id="jasonFooter">
-      
+
+  <v-footer padless id="jasonFooter">
     <v-card class="flex" flat tile
     color="primary">
 
@@ -20,7 +20,15 @@ export default {
 </script>
 
 <style scoped>
-#jasonFooter {
+/* #jasonFooter {
     margin-top: 300px;
+} */
+#jasonFooter {
+    bottom: 0;
+    height: 100px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    margin-top: 15px;
 }
 </style>

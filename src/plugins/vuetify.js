@@ -10,6 +10,7 @@ export default new Vuetify({
                 primary: '#B5FFE9',
                 secondary: '#CEABB1',
                 tertiary: 'C9C9C9',
+                cardBackground: 'C5E0D8',
             }
         }
     }
