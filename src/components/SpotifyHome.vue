@@ -34,11 +34,11 @@
               sm="4" id="genresCol">
         <v-card
         padding=50px
-        width="100%">
+        width>
         <v-card-title> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
           <v-row>
-            <v-col>
+
           <v-autocomplete
             filled
             solo
@@ -47,15 +47,15 @@
             v-model="selectedGenre"
             :items="items.genres"
             ></v-autocomplete>
-            </v-col>
-            <v-col>
+
+
                   <v-btn id="home-button"
               class="black--text"
               color="primary"
               rounded
             @click="updateSelectedGenre(selectedGenre)"><v-icon>  </v-icon> Get Recommendations
             </v-btn>
-            </v-col>
+
           </v-row>
         </v-card>
       </v-col>
