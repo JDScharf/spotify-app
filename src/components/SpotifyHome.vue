@@ -27,7 +27,7 @@
     <v-row class="allign-top">
       <v-col 
               v-if="showGenresCol"
-              class="d-flex justify-start"
+              class="d-flex justify-center"
               cols="12"
               lg="4"
               md="4"
@@ -35,112 +35,201 @@
         <v-card
         padding=50px
         width="100%">
-        <h3> Search Different Music Genres to find recommendations.</h3>
+        <v-card-title> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
-
-          <!-- <v-autocomplete>  
-            <template>
-        <v-select
-        :items="items.genres"
-        ></v-select>
-
-        </template>
-     </v-autocomplete> -->
-    <v-row>
-      <v-col>
-    <v-autocomplete
-      v-model="selectedGenre"
-      :items="items.genres"
-      clearable
-      ></v-autocomplete>
-      </v-col>
-      <v-col>
-            <v-btn id="home-button"
-        class="black--text"
-        color="primary"
-        rounded
-      @click="updateSelectedGenre(selectedGenre)"><v-icon>  </v-icon> Recommendations
-      </v-btn>
-      </v-col>
-    </v-row>
-
-      <!-- <v-list>
-        <v-list-item-group v-model="selectedGenre">    
-          <v-list-item
-            v-for="(items, i) in items.genres"
-            :key="i"
-            :value="items"
-            @click="updateSelectedGenre(selectedGenre)"
-            >
-          <v-list-item-content>
-            <v-list-item-title v-text="items"
-              :value="items"
-              ></v-list-item-title>
-          </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list> -->
-
+          <v-row>
+            <v-col>
+          <v-autocomplete
+            filled
+            solo
+            solo-inverted
+            clearable
+            v-model="selectedGenre"
+            :items="items.genres"
+            ></v-autocomplete>
+            </v-col>
+            <v-col>
+                  <v-btn id="home-button"
+              class="black--text"
+              color="primary"
+              rounded
+            @click="updateSelectedGenre(selectedGenre)"><v-icon>  </v-icon> Get Recommendations
+            </v-btn>
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
 
       <v-col 
-              v-if="showTenRecs"
-              class="d-flex justify-center"
-              cols="12"
-              sm="4"
-              id="firstTenRecsCol">
-        <v-card width="100%"
-            height="500px">
-          <h3>Top 10 artist recommendations: {{ this.selectedGenre }} </h3>
-          <p>Click the artist to see 10 artists that are similar to them </p>
-          <v-row>
-            <v-col>
-          <tr>
-          <v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">{{ topTenRecs.tracks[0].artists[0].name }}</v-btn></tr>
-           <tr>
-          <v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">{{ topTenRecs.tracks[1].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">{{ topTenRecs.tracks[2].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">{{ topTenRecs.tracks[3].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">{{ topTenRecs.tracks[4].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">{{ topTenRecs.tracks[5].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">{{ topTenRecs.tracks[6].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">{{ topTenRecs.tracks[7].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">{{ topTenRecs.tracks[8].artists[0].name }}</v-btn></tr>
-          <tr><v-btn
-           @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">{{ topTenRecs.tracks[9].artists[0].name }}</v-btn></tr>
-            </v-col>
-          </v-row>
+          v-if="showTenRecs"
+          class="d-flex justify-center"
+          cols="12"
+          sm="4"
+          id="firstTenRecsCol">
+        <v-card>
+          <v-card-title>Top 10 artist recommendations: {{ this.selectedGenre }} </v-card-title>
+          <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text>
+
+          <v-card
+              color="tertiary"
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[0].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[0].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[1].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[1].album.images[1].url)">
+          </v-card>
+          
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[2].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[2].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[3].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[3].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[4].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[4].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[5].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[5].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[6].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[6].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[7].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[7].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[8].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[8].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="tertiary" 
+              id="clickable" 
+              @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">
+          <v-card-title>{{ topTenRecs.tracks[9].artists[0].name }}</v-card-title>
+          <img :src= "(topTenRecs.tracks[9].album.images[1].url)">
+          </v-card>
 
         </v-card>
       </v-col>
 
-      <v-col v-if="showTenMore" class="d-flex justify-end"
+      <v-col v-if="showTenMore" 
+              class="d-flex justify-center"
               cols="12"
               sm="4">
-        <v-card width="100%">
-          <h3>10 more artist recommendations similar to: {{ selectedArtistName }} </h3>
-          <p></p>
-          <tr>{{ topTenArtistRecs.tracks[0].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[1].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[2].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[3].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[4].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[5].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[6].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[7].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[8].artists[0].name }}</tr>
-          <tr>{{ topTenArtistRecs.tracks[9].artists[0].name }}</tr>
+        <v-card>
+          <v-card-title>10 more artist recommendations similar to: {{ selectedArtistName }} </v-card-title>
+          <v-card-text>Click to visit their spotify page</v-card-text>
 
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[0].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[0].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[1].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[1].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[2].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[2].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[3].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[3].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[4].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[4].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[5].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[5].album.images[1].url)">
+          </v-card>
+
+            <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[6].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[6].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[7].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[7].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[8].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[8].album.images[1].url)">
+          </v-card>
+
+          <v-card 
+              color="cardBackground"
+              id="clickable">
+          <v-card-title>{{ topTenArtistRecs.tracks[9].artists[0].name }}</v-card-title>
+          <img :src= "(topTenArtistRecs.tracks[9].album.images[1].url)">
+          </v-card>
         </v-card>
       </v-col>
 
@@ -163,158 +252,33 @@
       topTenRecs: {
           tracks: [
             {
+              album: {
+                images: [],
+              },
               artists: [
                 {
                 name: "",
                 },
               ],
             },
-            {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                  {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            }
         ],
       },
         topTenArtistRecs: {
           tracks: [
             {
+              album: {
+                images: [],
+              },
               artists: [
                 {
                 name: "",
                 },
               ],
             },
-            {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                  {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            },
-                    {
-              artists: [
-                {
-                name: "",
-                },
-              ],
-            }
         ],
       },
       token: localStorage.getItem('token')
     }),
-    // onCreate: {
-    //     if(items = !null) {
-    //       this.getGenres1();
-    //     }
-    // },
       methods: {
         updateSelectedGenre(selectedGenre) {
             this.selectedGenre = selectedGenre;
@@ -384,6 +348,7 @@
             this.topTenRecs = JSON.parse(topTenRecs);
             console.log(typeof(topTenRecs) + topTenRecs);
             this.showTenRecs=true;
+            this.showTenMore=false;
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
@@ -430,5 +395,16 @@
 .title {
   font-family: "AttackGraffiti";
   font-size: 24px;
+}
+#clickable:hover {
+    cursor: pointer;
+}
+#clickable {
+  margin: 25px;
+  margin-bottom: 50px;
+}
+#main-wrapper {
+    padding: 0 0 100px;
+    position: relative;
 }
 </style>
