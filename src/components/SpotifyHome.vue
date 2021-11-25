@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container id="main-wrapper">
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -16,6 +16,7 @@
         </h1>
 
       <v-btn id="home-button"
+        v-if="isNewScreen"
         class="black--text"
         color="primary"
         rounded
@@ -246,6 +247,7 @@
       selectedGenre: "",
       selectedArtistID: {},
       selectedArtistName: "",
+      isNewScreen: true,
       showGenresCol: false,
       showTenRecs: false,
       showTenMore: false,
@@ -313,14 +315,13 @@
         else return Promise.reject(response);
         })
         .then(function(res) {
-          // genreJSON = JSON.parse(JSON.stringify(res));
-          // console.log(genreJSON);
           return res;
         })
         .then(items => {
             this.items = items;
             console.log(items);
             this.showGenresCol=true;
+            this.isNewScreen=false;
         })
         .catch(function (error) {
           console.warn('Something went wrong', error);
@@ -390,7 +391,7 @@
 
 <style>
 .home-button {
-  margin-top: 25px;
+  margin: 25px;
 }
 .title {
   font-family: "AttackGraffiti";

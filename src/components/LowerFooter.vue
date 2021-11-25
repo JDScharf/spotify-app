@@ -23,12 +23,17 @@ export default {
 /* #jasonFooter {
     margin-top: 300px;
 } */
+#main-wrapper {
+    padding: 0 0 100px;
+    position: relative;
+}
 #jasonFooter {
     bottom: 0;
     height: 100px;
     left: 0;
-    position: absolute;
+    position: absolute;;
     width: 100%;
-    margin-top: 15px;
+    /* margin-top: 50px; */
+    /* margin-top: 15px; */
 }
 </style>
