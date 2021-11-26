@@ -32,7 +32,7 @@
       </v-col>
     </v-row>
 
-    <v-row class="allign-top">
+    <v-row>
       <v-col 
               v-if="showGenresCol"
               class="d-flex justify-center"
@@ -41,6 +41,8 @@
               md="4"
               sm="4" id="genresCol">
         <v-card
+        color="bigCardBackground"
+        class="text-center"
         padding=50px>
         <v-card-title> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
@@ -48,7 +50,6 @@
             <v-col>
           <v-autocomplete
             filled
-            solo
             solo-inverted
             clearable
             v-model="selectedGenre"
@@ -76,8 +77,11 @@
           cols="12"
           sm="4"
           id="firstTenRecsCol">
-        <v-card>
-          <v-card-title>Top 10 artist recommendations:<br>{{ this.selectedGenre }} </v-card-title>
+        <v-card 
+          color="bigCardBackground"
+          class="text-center">
+          <v-card-title>Top 10 artist recommendations:<br>
+          <div class="pa-2 rounded-xl tertiary black--text">{{ this.selectedGenre }} </div></v-card-title>
           <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text>
 
           <v-card
@@ -88,7 +92,7 @@
           <img :src= "(topTenRecs.tracks[0].album.images[1].url)">
           </v-card>
 
-          <v-card 
+          <v-card
               color="tertiary" 
               id="clickable" 
               @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">
@@ -167,8 +171,11 @@
               class="d-flex justify-center"
               cols="12"
               sm="4">
-        <v-card>
-          <v-card-title>10 more artist recommendations similar to:<br> {{ selectedArtistName }} </v-card-title>
+        <v-card 
+            color="bigCardBackground"
+            class="text-center">
+          <v-card-title>10 artist recommendations similar to:<br>  
+          <div class="pa-2 rounded-xl tertiary black--text">{{ selectedArtistName }}</div> </v-card-title>
           <v-card-text>Click to visit their spotify page</v-card-text>
 
           <v-card 
