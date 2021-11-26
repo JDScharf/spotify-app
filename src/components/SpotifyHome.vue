@@ -77,7 +77,7 @@
           sm="4"
           id="firstTenRecsCol">
         <v-card>
-          <v-card-title>Top 10 artist recommendations: {{ this.selectedGenre }} </v-card-title>
+          <v-card-title>Top 10 artist recommendations:<br>{{ this.selectedGenre }} </v-card-title>
           <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text>
 
           <v-card
@@ -168,7 +168,7 @@
               cols="12"
               sm="4">
         <v-card>
-          <v-card-title>10 more artist recommendations similar to: {{ selectedArtistName }} </v-card-title>
+          <v-card-title>10 more artist recommendations similar to:<br> {{ selectedArtistName }} </v-card-title>
           <v-card-text>Click to visit their spotify page</v-card-text>
 
           <v-card 
