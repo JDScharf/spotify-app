@@ -40,6 +40,7 @@
        console.log(body + token);
        console.log("This is the Bearer token: " + token);
        localStorage.setItem( 'token', token);
+       this.loading=false;
      });
    }
  });

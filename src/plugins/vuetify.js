@@ -11,6 +11,7 @@ export default new Vuetify({
                 secondary: '#CEABB1',
                 tertiary: 'C9C9C9',
                 cardBackground: 'C5E0D8',
+                bigCardBackground: 'F2F8F6'
             }
         }
     }
