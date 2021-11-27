@@ -4,12 +4,7 @@
     <v-row class="text-center">
       <v-col cols="12"
           v-if="isNewScreen">
-        <!-- <v-img
-          :src="require('../assets/Cassette-Logo.png')"
-          class="my-3"
-          contain
-          height="200"
-        /> -->
+
       <v-img
           :src="require('../assets/cassette.png')"
           contain
@@ -73,7 +68,8 @@
         color="bigCardBackground"
         class="text-center"
         padding=50px>
-        <v-card-title> Search Different Music Genres to find recommendations.</v-card-title>
+        <v-card-title
+            style="word-break: break-word"> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
           <v-row>
             <v-col>
