@@ -1,36 +1,42 @@
 <template>
   <v-container id="main-wrapper">
+
     <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/Cassette-Logo.png')"
-          class="my-3"
+      <v-col cols="12"
+          v-if="isNewScreen">
+
+      <v-img
+          :src="require('../assets/cassette.png')"
           contain
-          height="200"
+          max-height="350"
         />
       </v-col>
 
-      <v-col>
+      <v-col v-if="isNewScreen">
         <h1 class="display-2 font-weight-bold mb-6">
           Spotify Music Explorer
         </h1>
 
       <v-btn id="home-button"
-        v-if="isNewScreen"
         class="black--text"
         color="primary"
         rounded
       @click="getGenres1">
     Click to Begin
       </v-btn>
+      </v-col>
+    </v-row>
 
-      <v-btn id="home-button"
-        v-if="isScreenDirty"
-        class="black--text"
-        color="secondary"
-        rounded
-      @click="resetFields">Reset Searches
-      </v-btn>
+    <v-row
+        id="resetButtonRow">
+      <v-col class="text-right">
+        <v-btn id="home-button"
+          v-if="isScreenDirty"
+          class="resetButton black--text"
+          color="secondary"
+          rounded
+        @click="resetFields"><v-icon> mdi-sync </v-icon> Reset Searches
+        </v-btn>
       </v-col>
     </v-row>
 
@@ -58,10 +64,13 @@
               md="4"
               sm="4" id="genresCol">
         <v-card
+        id="firstColumn"
         color="bigCardBackground"
         class="text-center"
         padding=50px>
-        <v-card-title> Search Different Music Genres to find recommendations.</v-card-title>
+        <v-card-title
+            class="text-center pa-2 primary black--text "
+            style="word-break: break-word"> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
           <v-row>
             <v-col>
@@ -75,13 +84,14 @@
             ></v-autocomplete>
             </v-col>
           </v-row>
-          <v-row>
+          <v-row
+            id="recButtonRow">
             <v-col>
                   <v-btn id="home-button"
               class="black--text"
               color="primary"
               rounded
-            @click="updateSelectedGenre(selectedGenre)"><v-icon>  </v-icon> Get Recommendations
+            @click="updateSelectedGenre(selectedGenre)"><v-icon> mdi-plus </v-icon> Get Recommendations
             </v-btn>
             </v-col>
           </v-row>
@@ -97,8 +107,8 @@
         <v-card 
           color="bigCardBackground"
           class="text-center">
-          <v-card-title>Top 10 artist recommendations:<br>
-          <div class="text-center pa-2 rounded-xl tertiary black--text">{{ this.selectedGenre }} </div></v-card-title>
+          <v-card-title class="text-center pa-2 rounded tertiary black--text ">Top 10 artist recommendations:<br>
+          <div class="pa-1 text-decoration-underline text-capitalize">{{ this.selectedGenre }}</div></v-card-title>
           <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text>
 
           <v-card
@@ -112,7 +122,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[0].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[0].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenRecs.tracks[0].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -127,7 +137,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[1].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[1].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
             <iframe :src="streamUrl + topTenRecs.tracks[1].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
           
@@ -142,7 +152,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[2].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[2].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                   <iframe :src="streamUrl + topTenRecs.tracks[2].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -157,7 +167,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[3].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[3].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[3].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -172,7 +182,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[4].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[4].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[4].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -187,7 +197,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[5].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[5].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                     <iframe :src="streamUrl + topTenRecs.tracks[5].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -202,7 +212,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[6].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[6].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                   <iframe :src="streamUrl + topTenRecs.tracks[6].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -217,7 +227,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[7].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[7].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                   <iframe :src="streamUrl + topTenRecs.tracks[7].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -232,7 +242,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[8].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[8].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[8].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -247,22 +257,24 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenRecs.tracks[9].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenRecs.tracks[9].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[9].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
         </v-card>
       </v-col>
 
-      <v-col v-if="showTenMore" 
+      <v-col v-if="showTenMore"
+              ref="3rdColumn"
               class="d-flex justify-center"
               cols="12"
               sm="4">
         <v-card 
             color="bigCardBackground"
             class="text-center">
-          <v-card-title>10 artist recommendations similar to:<br>  
-          <div class="pa-2 rounded-xl tertiary black--text">{{ selectedArtistName }}</div> </v-card-title>
+          <v-card-title 
+            class="text-center pa-2 rounded cardBackground black--text ">10 artist recommendations:<br>  
+          <div class="pa-1 text-decoration-underline">{{ selectedArtistName }}</div> </v-card-title>
           <v-card-text>Click to visit their spotify page</v-card-text>
 
           <v-card 
@@ -276,7 +288,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[0].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[0].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[0].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -291,7 +303,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[1].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[1].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[1].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -306,7 +318,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[2].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[2].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[2].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -321,7 +333,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[3].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[3].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[3].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -336,7 +348,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[4].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[4].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[4].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -351,7 +363,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[5].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[5].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[5].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -366,7 +378,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[6].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[6].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[6].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -381,7 +393,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[7].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[7].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[7].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -396,7 +408,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[8].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[8].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[8].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
@@ -411,7 +423,7 @@
                           class="black--text"
                           color="primary"
                           rounded
-                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[9].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[9].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
               <iframe :src="streamUrl + topTenArtistRecs.tracks[9].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
         </v-card>
@@ -537,6 +549,12 @@
             this.showTenMore= false;
             this.selectedGenre = null;
         },
+        scrollMeTo(refName) {
+          var element = this.$refs[refName];
+          element.scrollIntoView();
+          // var top = element.offsetTop;
+          // window.scrollTo(500, top);
+            },
         getGenres1() 
         {
             var bearerToken = {
@@ -624,6 +642,7 @@
             this.topTenArtistRecs = JSON.parse(topTenArtistRecs);
             console.log(typeof(topTenArtistRecs) + topTenArtistRecs)
             this.showTenMore=true;
+            this.scrollMeTo('3rdColumn');
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
@@ -636,8 +655,14 @@
 </script>
 
 <style>
-.home-button {
+/* .home-button {
   margin: 25px;
+} */
+#recButtonRow {
+  margin-bottom:25px;
+}
+#resetButtonRow {
+  margin-top:25px;
 }
 .title {
   font-family: "AttackGraffiti";
