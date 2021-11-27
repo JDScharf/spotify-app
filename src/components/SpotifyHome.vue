@@ -98,7 +98,7 @@
           color="bigCardBackground"
           class="text-center">
           <v-card-title>Top 10 artist recommendations:<br>
-          <div class="pa-2 rounded-xl tertiary black--text">{{ this.selectedGenre }} </div></v-card-title>
+          <div class="text-center pa-2 rounded-xl tertiary black--text">{{ this.selectedGenre }} </div></v-card-title>
           <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text>
 
           <v-card
@@ -106,16 +106,14 @@
               id="clickable" 
               @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[0].artists[0].name }}</v-card-title>
-            <!-- <v-tooltip bottom>
-              <template v-slot:activator="{ on, attrs }">
-                <img :src= "(topTenRecs.tracks[0].album.images[1].url)"
-                  v-bind="attrs"
-                  v-on="on">
-              </template>
-              <span> {{ topTenRecs.tracks[0].artists[0].name }} - {{ topTenRecs.tracks[0].album.name }} </span>
-            </v-tooltip> -->
             <img :src= "(topTenRecs.tracks[0].album.images[1].url)">
-              <iframe :src="streamUrl + topTenRecs.tracks[0].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[0].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenRecs.tracks[0].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card
@@ -124,6 +122,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[1].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[1].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[1].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
             <iframe :src="streamUrl + topTenRecs.tracks[1].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
           
@@ -133,6 +137,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[2].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[2].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[2].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                   <iframe :src="streamUrl + topTenRecs.tracks[2].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -142,6 +152,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[3].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[3].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[3].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[3].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -151,6 +167,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[4].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[4].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[4].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[4].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -160,6 +182,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[5].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[5].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[5].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                     <iframe :src="streamUrl + topTenRecs.tracks[5].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -169,6 +197,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[6].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[6].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[6].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                   <iframe :src="streamUrl + topTenRecs.tracks[6].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -178,6 +212,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[7].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[7].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[7].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                   <iframe :src="streamUrl + topTenRecs.tracks[7].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -187,6 +227,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[8].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[8].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[8].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[8].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -196,6 +242,12 @@
               @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[9].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[9].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenRecs.tracks[9].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[9].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
@@ -218,6 +270,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[0].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[0].album.images[1].url)">
+              <v-card-text>
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[0].artists[0].id" target="_blank"> Visit Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[0].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -225,6 +284,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[1].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[1].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[1].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[1].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[1].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -232,6 +298,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[2].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[2].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[2].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[2].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[2].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -239,6 +312,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[3].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[3].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[3].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[3].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[3].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -246,6 +326,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[4].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[4].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[4].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[4].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[4].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -253,6 +340,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[5].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[5].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[5].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[5].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[5].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
             <v-card 
@@ -260,6 +354,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[6].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[6].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[6].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[6].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[6].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -267,6 +368,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[7].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[7].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[7].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[7].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[7].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -274,6 +382,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[8].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[8].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[8].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[8].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[8].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
 
           <v-card 
@@ -281,6 +396,13 @@
               id="clickable">
           <v-card-title>{{ topTenArtistRecs.tracks[9].artists[0].name }}</v-card-title>
           <img :src= "(topTenArtistRecs.tracks[9].album.images[1].url)">
+              <v-card-text>  Visit {{ topTenArtistRecs.tracks[9].artists[0].name }}'s
+              <v-btn id="home-button"
+                          class="black--text"
+                          color="primary"
+                          rounded
+                          :href="artistSpotifyUrl + topTenArtistRecs.tracks[9].artists[0].id" target="_blank"> Spotify Page</v-btn></v-card-text> 
+              <iframe :src="streamUrl + topTenArtistRecs.tracks[9].uri" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
           </v-card>
         </v-card>
       </v-col>
@@ -296,6 +418,7 @@
     data: () => ({
       // loading: true,
       streamUrl: "https://embed.spotify.com/?uri=",
+      artistSpotifyUrl: "https://open.spotify.com/artist/",
       items: "",
       selectedGenre: "",
       selectedArtistID: {},
@@ -305,7 +428,7 @@
       showGenresCol: false,
       showTenRecs: false,
       showTenMore: false,
-      topTenRecs: {
+      selectedArtistObject: {
           tracks: [
             {
               album: {
@@ -313,6 +436,10 @@
               },
               artists: [
                 {
+                external_urls: {
+                  spotify: "",
+                },
+                id: "",
                 name: "",
                 },
               ],
@@ -324,7 +451,7 @@
             },
         ],
       },
-        topTenArtistRecs: {
+      topTenRecs: {
           tracks: [
             {
               album: {
@@ -332,12 +459,41 @@
               },
               artists: [
                 {
+                external_urls: {
+                  spotify: "",
+                },
+                id: "",
                 name: "",
                 },
               ],
               external_urls: {
                 spotify: "",
               },
+              id: null,
+              uri: null,
+            },
+        ],
+      },
+      topTenArtistRecs: {
+          tracks: [
+            {
+              album: {
+                images: [],
+              },
+              artists: [
+                {
+                external_urls: {
+                  spotify: "",
+                },
+                id: "",
+                name: "",
+                },
+              ],
+              external_urls: {
+                spotify: "",
+              },
+              id: null,
+              uri: null,
             },
         ],
       },
