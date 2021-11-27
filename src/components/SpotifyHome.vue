@@ -264,7 +264,8 @@
         </v-card>
       </v-col>
 
-      <v-col v-if="showTenMore" 
+      <v-col v-if="showTenMore"
+              ref="3rdColumn"
               class="d-flex justify-center"
               cols="12"
               sm="4">
@@ -275,10 +276,6 @@
             class="text-center pa-2 rounded cardBackground black--text ">10 artist recommendations:<br>  
           <div class="pa-1 text-decoration-underline">{{ selectedArtistName }}</div> </v-card-title>
           <v-card-text>Click to visit their spotify page</v-card-text>
-
-          <!-- <v-card-title class="text-center pa-2 rounded tertiary black--text ">Top 10 artist recommendations:<br>
-          <div class="pa-1 text-decoration-underline"> &#32;{{ this.selectedGenre }}</div></v-card-title>
-          <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text> -->
 
           <v-card 
               color="cardBackground"
@@ -552,6 +549,12 @@
             this.showTenMore= false;
             this.selectedGenre = null;
         },
+        scrollMeTo(refName) {
+          var element = this.$refs[refName];
+          element.scrollIntoView();
+          // var top = element.offsetTop;
+          // window.scrollTo(500, top);
+            },
         getGenres1() 
         {
             var bearerToken = {
@@ -639,6 +642,7 @@
             this.topTenArtistRecs = JSON.parse(topTenArtistRecs);
             console.log(typeof(topTenArtistRecs) + topTenArtistRecs)
             this.showTenMore=true;
+            this.scrollMeTo('3rdColumn');
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
