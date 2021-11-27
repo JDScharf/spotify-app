@@ -4,11 +4,16 @@
     <v-row class="text-center">
       <v-col cols="12"
           v-if="isNewScreen">
-        <v-img
+        <!-- <v-img
           :src="require('../assets/Cassette-Logo.png')"
           class="my-3"
           contain
           height="200"
+        /> -->
+      <v-img
+          :src="require('../assets/cassette.png')"
+          contain
+          max-height="350"
         />
       </v-col>
 
@@ -105,8 +110,8 @@
         <v-card 
           color="bigCardBackground"
           class="text-center">
-          <v-card-title>Top 10 artist recommendations:<br>
-          <div class="text-center pa-2 rounded tertiary black--text">{{ this.selectedGenre }} </div></v-card-title>
+          <v-card-title class="text-center pa-2 rounded tertiary black--text ">Top 10 artist recommendations:<br>
+          <div class="pa-1 text-decoration-underline"> &#32;{{ this.selectedGenre }}</div></v-card-title>
           <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text>
 
           <v-card
@@ -269,9 +274,14 @@
         <v-card 
             color="bigCardBackground"
             class="text-center">
-          <v-card-title>10 artist recommendations similar to:<br>  
-          <div class="pa-2 rounded tertiary black--text">{{ selectedArtistName }}</div> </v-card-title>
+          <v-card-title 
+            class="text-center pa-2 rounded cardBackground black--text ">10 artist recommendations:<br>  
+          <div class="pa-1 text-decoration-underline">{{ selectedArtistName }}</div> </v-card-title>
           <v-card-text>Click to visit their spotify page</v-card-text>
+
+          <!-- <v-card-title class="text-center pa-2 rounded tertiary black--text ">Top 10 artist recommendations:<br>
+          <div class="pa-1 text-decoration-underline"> &#32;{{ this.selectedGenre }}</div></v-card-title>
+          <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text> -->
 
           <v-card 
               color="cardBackground"
@@ -644,15 +654,14 @@
 </script>
 
 <style>
-.home-button {
+/* .home-button {
   margin: 25px;
-}
+} */
 #recButtonRow {
   margin-bottom:25px;
 }
 #resetButtonRow {
   margin-top:25px;
-  /* margin-right: 15px; */
 }
 .title {
   font-family: "AttackGraffiti";
