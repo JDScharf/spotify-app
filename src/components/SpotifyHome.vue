@@ -20,8 +20,10 @@
         class="black--text"
         color="primary"
         rounded
-      @click="getGenres1">Click to Begin
+      @click="getGenres1">
+    Click to Begin
       </v-btn>
+
       <v-btn id="home-button"
         v-if="isScreenDirty"
         class="black--text"
@@ -31,6 +33,21 @@
       </v-btn>
       </v-col>
     </v-row>
+
+      <!-- <v-row>
+        <v-col>
+        <template>
+          <div 
+            v-if="loadingIndicator"
+            class="text-center">
+            <v-progress-circular
+              indeterminate
+              color="secondary"
+            ></v-progress-circular>
+          </div>
+        </template>
+        </v-col>
+      </v-row> -->
 
     <v-row>
       <v-col 
@@ -89,7 +106,16 @@
               id="clickable" 
               @click="updateSelectedArtist(topTenRecs.tracks[0].artists[0].id, topTenRecs.tracks[0].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[0].artists[0].name }}</v-card-title>
-          <img :src= "(topTenRecs.tracks[0].album.images[1].url)">
+            <!-- <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <img :src= "(topTenRecs.tracks[0].album.images[1].url)"
+                  v-bind="attrs"
+                  v-on="on">
+              </template>
+              <span> {{ topTenRecs.tracks[0].artists[0].name }} - {{ topTenRecs.tracks[0].album.name }} </span>
+            </v-tooltip> -->
+            <img :src= "(topTenRecs.tracks[0].album.images[1].url)">
+              <iframe :src="streamUrl + topTenRecs.tracks[0].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card
@@ -98,6 +124,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[1].artists[0].id, topTenRecs.tracks[1].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[1].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[1].album.images[1].url)">
+            <iframe :src="streamUrl + topTenRecs.tracks[1].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
           
           <v-card 
@@ -106,6 +133,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[2].artists[0].id, topTenRecs.tracks[2].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[2].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[2].album.images[1].url)">
+                  <iframe :src="streamUrl + topTenRecs.tracks[2].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card 
@@ -114,6 +142,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[3].artists[0].id, topTenRecs.tracks[3].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[3].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[3].album.images[1].url)">
+                <iframe :src="streamUrl + topTenRecs.tracks[3].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card 
@@ -122,6 +151,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[4].artists[0].id, topTenRecs.tracks[4].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[4].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[4].album.images[1].url)">
+                <iframe :src="streamUrl + topTenRecs.tracks[4].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card 
@@ -130,6 +160,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[5].artists[0].id, topTenRecs.tracks[5].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[5].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[5].album.images[1].url)">
+                    <iframe :src="streamUrl + topTenRecs.tracks[5].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card 
@@ -138,6 +169,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[6].artists[0].id, topTenRecs.tracks[6].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[6].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[6].album.images[1].url)">
+                  <iframe :src="streamUrl + topTenRecs.tracks[6].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card 
@@ -146,6 +178,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[7].artists[0].id, topTenRecs.tracks[7].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[7].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[7].album.images[1].url)">
+                  <iframe :src="streamUrl + topTenRecs.tracks[7].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card 
@@ -154,6 +187,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[8].artists[0].id, topTenRecs.tracks[8].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[8].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[8].album.images[1].url)">
+                <iframe :src="streamUrl + topTenRecs.tracks[8].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
           <v-card 
@@ -162,6 +196,7 @@
               @click="updateSelectedArtist(topTenRecs.tracks[9].artists[0].id, topTenRecs.tracks[9].artists[0].name)">
           <v-card-title>{{ topTenRecs.tracks[9].artists[0].name }}</v-card-title>
           <img :src= "(topTenRecs.tracks[9].album.images[1].url)">
+                <iframe :src="streamUrl + topTenRecs.tracks[9].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
 
         </v-card>
@@ -259,6 +294,8 @@
     name: 'SpotifyHome',
 
     data: () => ({
+      // loading: true,
+      streamUrl: "https://embed.spotify.com/?uri=",
       items: "",
       selectedGenre: "",
       selectedArtistID: {},
@@ -279,6 +316,11 @@
                 name: "",
                 },
               ],
+              external_urls: {
+                spotify: "",
+              },
+              id: null,
+              uri: null,
             },
         ],
       },
@@ -293,16 +335,31 @@
                 name: "",
                 },
               ],
+              external_urls: {
+                spotify: "",
+              },
             },
         ],
       },
       token: localStorage.getItem('token')
     }),
+      // watch: {
+      //   isTokenActive: function (localStorage) {
+      //     this.loadingIndicator();
+      //   }
+      // },
       methods: {
         updateSelectedGenre(selectedGenre) {
             this.selectedGenre = selectedGenre;
             this.getRecommendations(this.selectedGenre);
         },
+        // loadingIndicator (localStorage) {
+        //   this.token = localStorage.getItem('token');
+        //   console.log("Watch function called: " + this.token);
+        //   if (this.token.length) {
+        //     this.loading=false;
+        //   }
+        // },
         updateSelectedArtist(selectedArtistID, selectedArtistName) {
           this.selectedArtistID = selectedArtistID;
           this.selectedArtistName = selectedArtistName;
@@ -430,5 +487,8 @@
 #main-wrapper {
     padding: 0 0 100px;
     position: relative;
+}
+.v-progress-circular {
+  margin: 1rem;
 }
 </style>
