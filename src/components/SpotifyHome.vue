@@ -69,6 +69,7 @@
         class="text-center"
         padding=50px>
         <v-card-title
+            class="text-center pa-2 primary black--text "
             style="word-break: break-word"> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
           <v-row>
@@ -107,7 +108,7 @@
           color="bigCardBackground"
           class="text-center">
           <v-card-title class="text-center pa-2 rounded tertiary black--text ">Top 10 artist recommendations:<br>
-          <div class="pa-1 text-decoration-underline"> &#32;{{ this.selectedGenre }}</div></v-card-title>
+          <div class="pa-1 text-decoration-underline text-capitalize">{{ this.selectedGenre }}</div></v-card-title>
           <v-card-text>Click the artist to see 10 artists that are similar to them </v-card-text>
 
           <v-card
