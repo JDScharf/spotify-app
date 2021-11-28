@@ -4,18 +4,16 @@
     <v-row class="text-center">
       <v-col cols="12"
           v-if="isNewScreen">
-
       <v-img
+          id="mainLogo"
           :src="require('../assets/cassette.png')"
           contain
           max-height="350"
         />
-      </v-col>
-
-      <v-col v-if="isNewScreen">
-        <h1 class="display-2 font-weight-bold mb-6">
+        <!-- <h1 class="display-2 font-weight-bold mb-6"> -->
+          <p class="mainText">
           Spotify Music Explorer
-        </h1>
+          </p>
 
       <v-btn id="home-button"
         class="black--text"
@@ -664,9 +662,14 @@
 #resetButtonRow {
   margin-top:25px;
 }
-.title {
+.mainText {
+  margin-top: 0px;
   font-family: "AttackGraffiti";
-  font-size: 24px;
+  font-size: 64px;
+}
+#mainLogo {
+  margin-bottom: 0px;
+  padding-bottom: 0;
 }
 #clickable:hover {
     cursor: pointer;
