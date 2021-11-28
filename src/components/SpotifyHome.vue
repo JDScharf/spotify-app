@@ -6,7 +6,7 @@
           v-if="isNewScreen">
       <v-img
           id="mainLogo"
-          :src="require('../assets/cassette.png')"
+          :src="require('../assets/Cassette-Logo.png')"
           contain
           max-height="350"
         />
