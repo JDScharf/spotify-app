@@ -8,7 +8,7 @@
           id="mainLogo"
           :src="require('../assets/Cassette-Logo.png')"
           contain
-          max-height="350"
+          max-height="300"
         />
         <!-- <h1 class="display-2 font-weight-bold mb-6"> -->
           <p class="mainText">
@@ -258,12 +258,12 @@
                           :href="artistSpotifyUrl + topTenRecs.tracks[9].artists[0].id" target="_blank"><v-icon> mdi-spotify</v-icon>  Visit Spotify Page</v-btn></v-card-text> 
                 <iframe :src="streamUrl + topTenRecs.tracks[9].uri" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
           </v-card>
-
         </v-card>
       </v-col>
 
+
+      <div ref="3rdColumn">
       <v-col v-if="showTenMore"
-              ref="3rdColumn"
               class="d-flex justify-center"
               cols="12"
               sm="4">
@@ -426,6 +426,7 @@
           </v-card>
         </v-card>
       </v-col>
+      </div>
 
     </v-row>
   </v-container>
@@ -537,10 +538,12 @@
         //   }
         // },
         updateSelectedArtist(selectedArtistID, selectedArtistName) {
+          this.showTenMore=true;
           this.selectedArtistID = selectedArtistID;
           this.selectedArtistName = selectedArtistName;
           console.log("This selected artistID is: " + typeof(selectedArtistID) + selectedArtistID);
           this.getRecommendationsFromArtist(this.selectedArtistID);
+          this.scrollMeTo('3rdColumn');
         },
         resetFields() {
             this.showTenRecs= false;
@@ -639,8 +642,8 @@
           .then(topTenArtistRecs => {
             this.topTenArtistRecs = JSON.parse(topTenArtistRecs);
             console.log(typeof(topTenArtistRecs) + topTenArtistRecs)
-            this.showTenMore=true;
-            this.scrollMeTo('3rdColumn');
+            // this.showTenMore=true;
+            // this.scrollMeTo('3rdColumn');
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
@@ -665,7 +668,7 @@
 .mainText {
   margin-top: 0px;
   font-family: "AttackGraffiti";
-  font-size: 64px;
+  font-size: 60px;
 }
 #mainLogo {
   margin-bottom: 0px;

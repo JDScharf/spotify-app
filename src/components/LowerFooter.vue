@@ -1,15 +1,10 @@
 <template>
 
   <v-footer padless id="jasonFooter">
-    <v-card class="flex" flat tile
-    color="primary">
-
-      <v-card-text class="py-4 black--text text-center">
-        {{ new Date().getFullYear() }} — <strong>Jason D Scharf Designs</strong>
+    <v-card class="flex primary" flat tile>
+      <v-card-text class="black--text text-center"><strong>
+        {{ new Date().getFullYear() }} — <a href="https://www.jdscharf.com" target="_blank" class="black--text">Jason D Scharf Designs</a></strong>
       </v-card-text>
-<v-card-subtitle
-      class="py-2 black--text text-center">Icons made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons" class="py-2 black--text text-center">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon" class="py-2 black--text text-center">www.flaticon.com</a></v-card-subtitle>
-
     </v-card>
   </v-footer>
 </template>
@@ -26,16 +21,20 @@ export default {
 /* #jasonFooter {
     margin-top: 300px;
 } */
-#main-wrapper {
+.flex {
+  background: "primary";
+}
+/* #main-wrapper {
     padding: 0 0 100px;
     position: relative;
-}
+} */
 #jasonFooter {
     bottom: 0;
-    height: 100px;
     left: 0;
-    position: absolute;;
+    background: "primary";
+    position: absolute;
     width: 100%;
+    /* padding-bottom: 0px; */
     /* margin-top: 50px; */
     /* margin-top: 15px; */
 }
