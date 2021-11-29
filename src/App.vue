@@ -8,7 +8,7 @@
     <v-row>
           <v-icon large color="secondary">mdi-cassette</v-icon> 
           <h1
-            class="black--text">Spotify Music Explorer</h1>
+            class="mainText black--text">Spotify Music Explorer</h1>
     </v-row>
     </v-app-bar>
 
@@ -43,4 +43,10 @@ export default {
   src: local("AttackGraffiti"), 
     url(./fonts/AttackGraffiti.ttf) format("truetype");
 }
+@font-face {
+  font-family: "MagikMarker";
+  src: local("MagikMarker"), 
+    url(./fonts/MagikMarker.otf) format("opentype");
+}
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 </style> 

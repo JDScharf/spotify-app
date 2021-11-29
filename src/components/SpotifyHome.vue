@@ -10,8 +10,15 @@
           contain
           max-height="300"
         />
+        <!-- <v-img
+          id="mainLogo"
+          padding="50"
+          :src="require('../assets/MarkerTape.svg')"
+          contain
+          max-height="300"
+        /> -->
         <!-- <h1 class="display-2 font-weight-bold mb-6"> -->
-          <p class="mainText">
+          <p class="titleText">
           Spotify Music Explorer
           </p>
 
@@ -65,7 +72,8 @@
         id="firstColumn"
         color="bigCardBackground"
         class="text-center"
-        padding=50px>
+        padding=50px
+        max-height="300px">
         <v-card-title
             class="text-center pa-2 primary black--text "
             style="word-break: break-word"> Search Different Music Genres to find recommendations.</v-card-title>
@@ -262,8 +270,9 @@
       </v-col>
 
 
-      <div ref="3rdColumn">
+      <!-- <div ref="3rdColumn"> -->
       <v-col v-if="showTenMore"
+              ref="3rdColumn"
               class="d-flex justify-center"
               cols="12"
               sm="4">
@@ -426,7 +435,7 @@
           </v-card>
         </v-card>
       </v-col>
-      </div>
+    <!-- </div> -->
 
     </v-row>
   </v-container>
@@ -665,13 +674,31 @@
 #resetButtonRow {
   margin-top:25px;
 }
-.mainText {
+/* .titleText {
   margin-top: 0px;
   font-family: "AttackGraffiti";
   font-size: 60px;
+} */
+/* .titleText {
+  margin-top: 0px;
+  font-family: "MagikMarker";
+  font-size: 80px;
+} */
+.titleText {
+  margin-top: 0px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 60px;
+}
+.mainText {
+  margin-top: 0px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
 }
 #mainLogo {
   margin-bottom: 0px;
+  margin-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
   padding-bottom: 0;
 }
 #clickable:hover {
