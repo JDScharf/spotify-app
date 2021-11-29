@@ -6,9 +6,9 @@
           v-if="isNewScreen">
       <v-img
           id="mainLogo"
-          :src="require('../assets/Cassette-Logo.png')"
+          :src="require('../assets/cassette.png')"
           contain
-          max-height="300"
+          max-height="275"
         />
         <!-- <v-img
           id="mainLogo"
@@ -669,6 +669,7 @@
   margin: 25px;
 } */
 #recButtonRow {
+  margin-top: 0px;
   margin-bottom:25px;
 }
 #resetButtonRow {
@@ -686,8 +687,9 @@
 } */
 .titleText {
   margin-top: 0px;
+  padding-top: 0px;
   font-family: 'Quicksand', sans-serif;
-  font-size: 60px;
+  font-size: 58px;
 }
 .mainText {
   margin-top: 0px;
