@@ -10,14 +10,6 @@
           contain
           max-height="275"
         />
-        <!-- <v-img
-          id="mainLogo"
-          padding="50"
-          :src="require('../assets/MarkerTape.svg')"
-          contain
-          max-height="300"
-        /> -->
-        <!-- <h1 class="display-2 font-weight-bold mb-6"> -->
           <p class="titleText">
           Spotify Music Explorer
           </p>
@@ -33,49 +25,32 @@
     </v-row>
 
     <v-row
-        id="resetButtonRow">
-      <v-col class="text-right">
-        <v-btn id="home-button"
-          v-if="isScreenDirty"
-          class="resetButton black--text"
-          color="secondary"
-          rounded
-        @click="resetFields"><v-icon> mdi-sync </v-icon> Reset Searches
-        </v-btn>
+        id="smallLogoRow">
+      <v-col 
+          v-if="showGenresCol"
+          class="d-flex justify-center">
+        <v-img
+          id="smallLogo"
+          :src="require('../assets/cassette.png')"
+          contain
+          max-height="125"
+        />
       </v-col>
     </v-row>
-
-      <!-- <v-row>
-        <v-col>
-        <template>
-          <div 
-            v-if="loadingIndicator"
-            class="text-center">
-            <v-progress-circular
-              indeterminate
-              color="secondary"
-            ></v-progress-circular>
-          </div>
-        </template>
-        </v-col>
-      </v-row> -->
 
     <v-row>
       <v-col 
               v-if="showGenresCol"
-              class="d-flex justify-center"
-              cols="12"
-              lg="4"
-              md="4"
-              sm="4" id="genresCol">
+              class="d-flex justify-center" 
+              id="genresCol">
         <v-card
         id="firstColumn"
         color="bigCardBackground"
         class="text-center"
         padding=50px
-        max-height="300px">
+        max-height="350px">
         <v-card-title
-            class="text-center pa-2 primary black--text "
+            class="text-center pa-2 cardBackground black--text "
             style="word-break: break-word"> Search Different Music Genres to find recommendations.</v-card-title>
         <p></p>
           <v-row>
@@ -85,6 +60,7 @@
             solo-inverted
             clearable
             v-model="selectedGenre"
+            label="Select a Genre (Required)"
             :items="items.genres"
             :menu-props="{ top: true, offsetY: true }"
             ></v-autocomplete>
@@ -93,13 +69,22 @@
           <v-row
             id="recButtonRow">
             <v-col>
-                  <v-btn id="home-button"
-              class="black--text"
-              color="primary"
-              rounded
-            @click="updateSelectedGenre(selectedGenre)"><v-icon> mdi-plus </v-icon> Get Recommendations
+              <v-btn id="home-button"
+                class="black--text"
+                color="primary"
+                rounded
+                @click="updateSelectedGenre(selectedGenre)"><v-icon> mdi-plus </v-icon> Get Recommendations
             </v-btn>
             </v-col>
+          <v-col>
+            <v-btn id="home-button"
+                :disabled="!showTenRecs"
+                class="resetButton black--text"
+                color="secondary"
+                rounded
+                @click="resetFields"><v-icon> mdi-sync </v-icon> Reset Searches
+            </v-btn>
+      </v-col>
           </v-row>
         </v-card>
       </v-col>
@@ -269,8 +254,6 @@
         </v-card>
       </v-col>
 
-
-      <!-- <div ref="3rdColumn"> -->
       <v-col v-if="showTenMore"
               ref="3rdColumn"
               class="d-flex justify-center"
@@ -435,7 +418,6 @@
           </v-card>
         </v-card>
       </v-col>
-    <!-- </div> -->
 
     </v-row>
   </v-container>
@@ -446,11 +428,10 @@
     name: 'SpotifyHome',
 
     data: () => ({
-      // loading: true,
       streamUrl: "https://embed.spotify.com/?uri=",
       artistSpotifyUrl: "https://open.spotify.com/artist/",
       items: "",
-      selectedGenre: "",
+      selectedGenre: null,
       selectedArtistID: {},
       selectedArtistName: "",
       isNewScreen: true,
@@ -529,23 +510,11 @@
       },
       token: localStorage.getItem('token')
     }),
-      // watch: {
-      //   isTokenActive: function (localStorage) {
-      //     this.loadingIndicator();
-      //   }
-      // },
       methods: {
         updateSelectedGenre(selectedGenre) {
             this.selectedGenre = selectedGenre;
             this.getRecommendations(this.selectedGenre);
         },
-        // loadingIndicator (localStorage) {
-        //   this.token = localStorage.getItem('token');
-        //   console.log("Watch function called: " + this.token);
-        //   if (this.token.length) {
-        //     this.loading=false;
-        //   }
-        // },
         updateSelectedArtist(selectedArtistID, selectedArtistName) {
           this.showTenMore=true;
           this.selectedArtistID = selectedArtistID;
@@ -562,16 +531,12 @@
         scrollMeTo(refName) {
           var element = this.$refs[refName];
           element.scrollIntoView();
-          // var top = element.offsetTop;
-          // window.scrollTo(500, top);
             },
         getGenres1() 
         {
             var bearerToken = {
             Bearer: token, 
             };
-      
-      // var genreJSON = [];
       const token = this.token;
     
     var getGenres = {
@@ -627,7 +592,6 @@
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
-          // console.log(this.thisGenre);
           console.log(this.response);
           return this.response;
     },
@@ -651,8 +615,6 @@
           .then(topTenArtistRecs => {
             this.topTenArtistRecs = JSON.parse(topTenArtistRecs);
             console.log(typeof(topTenArtistRecs) + topTenArtistRecs)
-            // this.showTenMore=true;
-            // this.scrollMeTo('3rdColumn');
           }) 
           .catch(error => console.log('error', error));
           console.log(bearerToken);
@@ -665,26 +627,17 @@
 </script>
 
 <style>
-/* .home-button {
-  margin: 25px;
-} */
 #recButtonRow {
   margin-top: 0px;
-  margin-bottom:25px;
+  margin-bottom:45px;
+  padding-bottom: 75px;
 }
-#resetButtonRow {
-  margin-top:25px;
+#resetButton {
+  padding-bottom: 75px;
 }
-/* .titleText {
-  margin-top: 0px;
-  font-family: "AttackGraffiti";
-  font-size: 60px;
-} */
-/* .titleText {
-  margin-top: 0px;
-  font-family: "MagikMarker";
-  font-size: 80px;
-} */
+#smallLogoRow {
+  padding:0px;
+}
 .titleText {
   margin-top: 0px;
   padding-top: 0px;
@@ -703,6 +656,10 @@
   padding-right: 25px;
   padding-bottom: 0;
 }
+#smallLogo {
+  margin: 0px;
+  padding: 0;
+}
 #clickable:hover {
     cursor: pointer;
 }
@@ -713,8 +670,5 @@
 #main-wrapper {
     padding: 0 0 100px;
     position: relative;
-}
-.v-progress-circular {
-  margin: 1rem;
 }
 </style>
