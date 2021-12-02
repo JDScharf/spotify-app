@@ -73,7 +73,7 @@
                 class="black--text"
                 color="primary"
                 rounded
-                @click="updateSelectedGenre(selectedGenre)"><v-icon> mdi-plus </v-icon> Get Recommendations
+                @click="updateSelectedGenre(selectedGenre)"><v-icon> mdi-magnify </v-icon> Search
             </v-btn>
             </v-col>
           <v-col>
