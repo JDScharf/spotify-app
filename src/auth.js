@@ -10,13 +10,13 @@
  var request = require('request'); // "Request" library
 
  var client_id = '804050d007be417eb4201ae03d073609'; // Your client id
- var client_secret = '3bbded439066436999df87fb3dd12bae'; // Your secret
+ var client_secret = '822f8dbcd6e94246be719830eb6491db'; // Your secret
  
  // your application requests authorization
  var authOptions = {
    url: 'https://accounts.spotify.com/api/token',
    headers: {
-     'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+     'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
    },
    form: {
      grant_type: 'client_credentials'
